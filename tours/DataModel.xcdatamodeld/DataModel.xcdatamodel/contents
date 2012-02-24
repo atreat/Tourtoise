@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="872" systemVersion="10K549" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Stop" representedClassName="Stop" syncable="YES">
+        <attribute name="dictionary" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="media" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uniqueId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="inTour" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Tour" inverseName="stops" inverseEntity="Tour" syncable="YES"/>
+    </entity>
+    <entity name="Tour" representedClassName="Tour" syncable="YES">
+        <attribute name="dictionary" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="stops" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Stop" inverseName="inTour" inverseEntity="Stop" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Stop" positionX="-407" positionY="180" width="128" height="120"/>
+        <element name="Tour" positionX="-135" positionY="90" width="128" height="90"/>
+    </elements>
+</model>
