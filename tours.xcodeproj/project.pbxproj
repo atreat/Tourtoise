@@ -53,6 +53,7 @@
 		D9990EB2145EF5BC003FE952 /* purple_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = D9990EAE145EF5BC003FE952 /* purple_circle.png */; };
 		D9990EB3145EF5BC003FE952 /* red_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = D9990EAF145EF5BC003FE952 /* red_circle.png */; };
 		D9990EB6145EF7AD003FE952 /* background_dots.png in Resources */ = {isa = PBXBuildFile; fileRef = D9990EB5145EF7AD003FE952 /* background_dots.png */; };
+		D9A883A21500256F00CEAD0C /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A883A11500256F00CEAD0C /* NSData+Base64.m */; };
 		D9D09C16147C3CF60040092B /* Animator.m in Sources */ = {isa = PBXBuildFile; fileRef = D9D09C15147C3CF60040092B /* Animator.m */; };
 		D9EBFA4D1485E461007C30CA /* CreateStopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9EBFA4B1485E461007C30CA /* CreateStopViewController.m */; };
 		D9EBFA4E1485E461007C30CA /* CreateStopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9EBFA4C1485E461007C30CA /* CreateStopViewController.xib */; };
@@ -133,6 +134,8 @@
 		D9990EAE145EF5BC003FE952 /* purple_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purple_circle.png; sourceTree = "<group>"; };
 		D9990EAF145EF5BC003FE952 /* red_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_circle.png; sourceTree = "<group>"; };
 		D9990EB5145EF7AD003FE952 /* background_dots.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_dots.png; sourceTree = "<group>"; };
+		D9A883A01500256F00CEAD0C /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		D9A883A11500256F00CEAD0C /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		D9D09C14147C3CF60040092B /* Animator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animator.h; sourceTree = "<group>"; };
 		D9D09C15147C3CF60040092B /* Animator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Animator.m; sourceTree = "<group>"; };
 		D9EBFA4A1485E461007C30CA /* CreateStopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateStopViewController.h; sourceTree = "<group>"; };
@@ -381,6 +384,8 @@
 			children = (
 				B91BF4B7146B2FE800D3D141 /* ServerRequest.h */,
 				B91BF4B8146B2FE800D3D141 /* ServerRequest.m */,
+				D9A883A01500256F00CEAD0C /* NSData+Base64.h */,
+				D9A883A11500256F00CEAD0C /* NSData+Base64.m */,
 			);
 			name = Server;
 			sourceTree = "<group>";
@@ -537,6 +542,7 @@
 				D91C6279148BE59F00DB6B39 /* DataModel.xcdatamodeld in Sources */,
 				D91C62AC148BEAA200DB6B39 /* Stop.m in Sources */,
 				D91C62AF148BEAB600DB6B39 /* Tour.m in Sources */,
+				D9A883A21500256F00CEAD0C /* NSData+Base64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

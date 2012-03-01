@@ -10,6 +10,8 @@
 
 @implementation ServerRequest
 
+
+
 - (id)init
 {
     self = [super init];
@@ -27,13 +29,15 @@
 //        The date header is used to ensure that the same request cannot be used at a later point in time by comparing the date sent in the header with the current date. The date in the header must be within 180 seconds of the current GMT time or the request will fail.
 //        
 //        The date header must be formatted according to RFC 822 (updated by RFC 1123). An example date is as follows: Sat, 22 Oct 2011 04:50:43 +0000
+        NSDate *date =   [NSDate date];
+        NSLog(@"Date    ::      %@", date);
         
         
         
         
         
         
-#pragma mark - @Authorization
+
 //        Authorization
 //        
 //        The Authorization header is a custom header used to authenticate the client and the user requesting access to the API. The authorization header must be formatted as follows:
