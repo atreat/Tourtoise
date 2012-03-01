@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CommonCrypto/CommonDigest.h>       //needed for sha1
 
 @interface ServerRequest : NSURLConnection {
     NSMutableData       *dataToBeLoaded;

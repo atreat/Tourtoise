@@ -12,7 +12,7 @@
 
 // Static class that will handle all view animations
 //
-//
+//      Abstracts animation so that can be used for multiple views
 //
 //
 //
