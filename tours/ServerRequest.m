@@ -24,20 +24,34 @@
         //Need to add Date and Authorization headers to request
         
 #pragma mark - @Date Format
-//        Date
-//        
-//        The date header is used to ensure that the same request cannot be used at a later point in time by comparing the date sent in the header with the current date. The date in the header must be within 180 seconds of the current GMT time or the request will fail.
-//        
-//        The date header must be formatted according to RFC 822 (updated by RFC 1123). An example date is as follows: Sat, 22 Oct 2011 04:50:43 +0000
-        NSDate *date =   [NSDate date];
-        NSLog(@"Date    ::      %@", date);
         
-        
-        
-        
-        
+        NSString *date = [self formatDateString];
+        [request addValue:date forHTTPHeaderField:@"Date"];
         
 
+        
+        
+#pragma mark - @Authorization
+        
+        NSString *privateString = [NSString stringWithFormat:@"%@\n%@",PRIVATE_KEY,date];
+        NSLog(@"Before SHA1 %@",privateString);
+        unsigned char digest[CC_SHA1_DIGEST_LENGTH];
+        
+        NSData *stringBytes = [privateString dataUsingEncoding: NSUTF8StringEncoding];
+        if(CC_SHA1([stringBytes bytes], [stringBytes length], digest)){
+            //privateString = [NSString stringWithCString:ptr encoding:NSUTF8StringEncoding];
+            NSData *hashdata = [NSData dataWithBytes:digest length:CC_SHA1_DIGEST_LENGTH];
+            NSLog(@"After SHA1 %@",[hashdata description]);
+            
+        }
+        
+        
+        
+        //CC_SHA1([privateString UTF8String], [privateString lengthOfBytesUsingEncoding:NSUTF8StringEncoding], digest);
+        //NSData *hasdata  = [NSData dataWithBytes:digest length:CC_SHA1_DIGEST_LENGTH];
+        //NSString *str = [[NSString alloc]initWithData:hasdata encoding:NSUTF8StringEncoding];
+        //NSLog(@"After SHA1 %@",str);
+        
 //        Authorization
 //        
 //        The Authorization header is a custom header used to authenticate the client and the user requesting access to the API. The authorization header must be formatted as follows:
@@ -46,6 +60,9 @@
 //        where PublicKey is the public key of the client, UserID is the base64 encoded user ID of the user requesting access (usually their email address) and Password is the user's base64 encoded password. PrivateString must be formatted as follows:
 //        
 //        base64_encode(sha1(PrivateKey + "\n" + Date))
+        
+        
+        
         
         
         
@@ -92,6 +109,23 @@
   
     
     
+}
+
+
+//        Date
+//        
+//        The date header is used to ensure that the same request cannot be used at a later point in time by comparing the date sent in the header with the current date. The date in the header must be within 180 seconds of the current GMT time or the request will fail.
+//        
+//        The date header must be formatted according to RFC 822 (updated by RFC 1123). An example date is as follows: Sat, 22 Oct 2011 04:50:43 +0000
+#pragma mark - date format
+- (NSString *) formatDateString
+{
+    NSDate *date  = [[NSDate alloc] init];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat: @"EEE, dd MMM yyyy kk:mm:ss ZZZ"];
+    NSString *dateString = [formatter stringFromDate:date];        
+    NSLog(@"formatted date: %@",dateString);
+    return dateString;
 }
     
 @end
