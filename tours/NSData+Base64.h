@@ -21,6 +21,15 @@
 //     distribution.
 //
 
+
+
+
+
+//  This category allows for the use of these methods on the NSData clas
+//      More specifically, it allows for data to be Base64 encoded
+
+
+
 #import <Foundation/Foundation.h>
 
 void *NewBase64Decode(
