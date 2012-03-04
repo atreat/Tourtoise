@@ -29,7 +29,7 @@
     
     ServerRequest *sr = [[ServerRequest alloc] init];
     
-    
+    [sr release];   //for now
     
     
     return YES;

@@ -38,19 +38,21 @@
         unsigned char digest[CC_SHA1_DIGEST_LENGTH];
         
         NSData *stringBytes = [privateString dataUsingEncoding: NSUTF8StringEncoding];
-        if(CC_SHA1([stringBytes bytes], [stringBytes length], digest)){
-            //privateString = [NSString stringWithCString:ptr encoding:NSUTF8StringEncoding];
+        
+        if(CC_SHA1([stringBytes bytes], [stringBytes length], digest)){ //if sha1 does work, hash stored in digest
+
             NSData *hashdata = [NSData dataWithBytes:digest length:CC_SHA1_DIGEST_LENGTH];
             NSLog(@"After SHA1 %@",[hashdata description]);
             
+            NSString *encodedPrivateString = [hashdata base64EncodedString];
+            
+            //                  PublicKey:PrivateString:UserID:Password
+            NSString *authString = [NSString stringWithFormat:@"%@:%@:%@:%@",PUBLIC_KEY,encodedPrivateString,USER_ID,PASSWORD];
+            [request addValue:authString forHTTPHeaderField:@"Authorization"];
         }
         
         
         
-        //CC_SHA1([privateString UTF8String], [privateString lengthOfBytesUsingEncoding:NSUTF8StringEncoding], digest);
-        //NSData *hasdata  = [NSData dataWithBytes:digest length:CC_SHA1_DIGEST_LENGTH];
-        //NSString *str = [[NSString alloc]initWithData:hasdata encoding:NSUTF8StringEncoding];
-        //NSLog(@"After SHA1 %@",str);
         
 //        Authorization
 //        
@@ -122,6 +124,10 @@
 {
     NSDate *date  = [[NSDate alloc] init];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    
+    NSTimeZone *gmt = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
+    [formatter setTimeZone:gmt];
+    
     [formatter setDateFormat: @"EEE, dd MMM yyyy kk:mm:ss ZZZ"];
     NSString *dateString = [formatter stringFromDate:date];        
     NSLog(@"formatted date: %@",dateString);

@@ -15,8 +15,8 @@
 
 #define PUBLIC_KEY @"JMoEudX2ESn5ZNiUcMbFd25ynBErffCF7l4ezRWRe959PENv6XVYNckiImF7P34Q"
 #define PRIVATE_KEY @"kT8ME0kDJaxhfjgjd2CAQvBSkBB7WzDYQSNgVQI491YeW0RLUT1gTB8WDOhgCvjR"
-#define USER @"primehunter326@gmail.com"
-#define PASS @"chupacabra"
+#define USER_ID @"primehunter326@gmail.com"
+#define PASSWORD @"chupacabra"
 
 @interface ServerRequest : NSURLConnection {
     NSMutableData       *dataToBeLoaded;
