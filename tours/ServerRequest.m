@@ -23,37 +23,42 @@
         
         //Need to add Date and Authorization headers to request
         
-#pragma mark - @Date Format
-        
+// Date Header        
         NSString *date = [self formatDateString];
         [request addValue:date forHTTPHeaderField:@"Date"];
-        
 
-        
-        
-#pragma mark - @Authorization
-        
+
+
+
+//Authorization Header
+        //private string is PrivateKey + \n + date
         NSString *privateString = [NSString stringWithFormat:@"%@\n%@",PRIVATE_KEY,date];
         NSLog(@"Before SHA1 %@",privateString);
-        unsigned char digest[CC_SHA1_DIGEST_LENGTH];
         
-        NSData *stringBytes = [privateString dataUsingEncoding: NSUTF8StringEncoding];
-        
-        if(CC_SHA1([stringBytes bytes], [stringBytes length], digest)){ //if sha1 does work, hash stored in digest
+//        unsigned char digest[CC_SHA1_DIGEST_LENGTH];
+//        NSData *stringBytes = [privateString dataUsingEncoding: NSUTF8StringEncoding];
 
-            NSData *hashdata = [NSData dataWithBytes:digest length:CC_SHA1_DIGEST_LENGTH];
-            NSLog(@"After SHA1 %@",[hashdata description]);
-            
-            NSString *encodedPrivateString = [hashdata base64EncodedString];
-            
-            //                  PublicKey:PrivateString:UserID:Password
-            NSString *authString = [NSString stringWithFormat:@"%@:%@:%@:%@",PUBLIC_KEY,encodedPrivateString,USER_ID,PASSWORD];
-            [request addValue:authString forHTTPHeaderField:@"Authorization"];
-        }
+//        if(CC_SHA1([stringBytes bytes], [stringBytes length], digest)){     //if sha1 does work, hash stored in digest array
+//
+//            NSData *hashdata = [NSData dataWithBytes:digest length:CC_SHA1_DIGEST_LENGTH];
+//            NSLog(@"After SHA1 %@",[hashdata description]);
+//
+//            NSString *encodedPrivateString = [hashdata base64EncodedString];
+//
+//            //                  PublicKey:PrivateString:UserID:Password
+//            NSString *authString = [NSString stringWithFormat:@"%@:%@:%@:%@",PUBLIC_KEY,encodedPrivateString,USER_ID,PASSWORD];
+//            [request addValue:authString forHTTPHeaderField:@"Authorization"];
+//        }
+        
+        NSString *sha1String = [privateString sha1];
+        NSData *hashData = [sha1String dataUsingEncoding:NSUTF8StringEncoding];
+        NSString *encodedPrivateString = [hashData base64EncodedString];
+        
+        NSString *authString = [NSString stringWithFormat:@"%@:%@:%@:%@",PUBLIC_KEY,encodedPrivateString,USER_ID,PASSWORD];
+        [request addValue:authString forHTTPHeaderField:@"Authorization"];
         
         
-        
-        
+//        [self test];
 //        Authorization
 //        
 //        The Authorization header is a custom header used to authenticate the client and the user requesting access to the API. The authorization header must be formatted as follows:
@@ -68,12 +73,7 @@
         
         
         
-        
-        
-        
-        
-        
-        
+
         connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
         
     }
@@ -106,6 +106,10 @@
     
     
 }
+
+
+
+
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
   
@@ -122,8 +126,8 @@
 #pragma mark - date format
 - (NSString *) formatDateString
 {
-    NSDate *date  = [[NSDate alloc] init];
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    NSDate *date  = [[[NSDate alloc] init] autorelease];
+    NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
     
     NSTimeZone *gmt = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];
     [formatter setTimeZone:gmt];
@@ -133,5 +137,69 @@
     NSLog(@"formatted date: %@",dateString);
     return dateString;
 }
+
+
+
+
+- (void) test
+{
+    NSLog(@"Test Function -- Begin          :::::");
+    NSString *testString    = @"Hello World!";
+    
+    NSData *testData        = [testString dataUsingEncoding:NSUTF8StringEncoding];
+    NSLog(@"Base64 encoded test string :: %@",[testData base64EncodedString]);
+    
+    
+//    unsigned char digest[CC_SHA1_DIGEST_LENGTH];
+//    NSData *stringBytes = [testString dataUsingEncoding: NSUTF8StringEncoding];
+//    if(CC_SHA1([stringBytes bytes], [stringBytes length], digest)){     //if sha1 does work, hash stored in digest array
+//        
+//        NSData *hashdata = [NSData dataWithBytes:digest length:CC_SHA1_DIGEST_LENGTH];
+//        NSLog(@"After SHA1 %@",[hashdata description]);
+//        
+//    }
+    
+    
+    NSData *data = [testString dataUsingEncoding:NSUTF8StringEncoding];
+    uint8_t digest[CC_SHA1_DIGEST_LENGTH];
+    
+    CC_SHA1(data.bytes, data.length, digest);
+    
+    NSMutableString *output = [NSMutableString stringWithCapacity:CC_SHA1_DIGEST_LENGTH * 2];
+    
+    for (int i = 0; i < CC_SHA1_DIGEST_LENGTH; i++)
+    {
+        [output appendFormat:@"%02x", digest[i]];
+    }
+    
+    NSLog(@"After SHA1 %@",output);
+    
+    NSLog(@"Test Function -- End            :::::");
+    NSLog(@"Test Function -- End            :::::");
+    NSLog(@"Test Function -- End            :::::");
+    NSLog(@"Test Function -- End            :::::");
+    NSLog(@"Test Function -- End            :::::");
+}
     
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

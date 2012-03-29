@@ -43,6 +43,7 @@
 		D91C6279148BE59F00DB6B39 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D91C6277148BE59F00DB6B39 /* DataModel.xcdatamodeld */; };
 		D91C62AC148BEAA200DB6B39 /* Stop.m in Sources */ = {isa = PBXBuildFile; fileRef = D91C62AB148BEAA200DB6B39 /* Stop.m */; };
 		D91C62AF148BEAB600DB6B39 /* Tour.m in Sources */ = {isa = PBXBuildFile; fileRef = D91C62AE148BEAB600DB6B39 /* Tour.m */; };
+		D92B718D1523F01200190963 /* NSString+SHA1.m in Sources */ = {isa = PBXBuildFile; fileRef = D92B718C1523F01200190963 /* NSString+SHA1.m */; };
 		D92E4FC21477785D00472249 /* CreateTourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D92E4FC01477785D00472249 /* CreateTourViewController.m */; };
 		D92E4FC31477785D00472249 /* CreateTourViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D92E4FC11477785D00472249 /* CreateTourViewController.xib */; };
 		D92E4FD1147824FB00472249 /* ATE_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = D92E4FD0147824FB00472249 /* ATE_camera.png */; };
@@ -121,6 +122,8 @@
 		D91C62AB148BEAA200DB6B39 /* Stop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Stop.m; sourceTree = "<group>"; };
 		D91C62AD148BEAB600DB6B39 /* Tour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tour.h; sourceTree = "<group>"; };
 		D91C62AE148BEAB600DB6B39 /* Tour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tour.m; sourceTree = "<group>"; };
+		D92B718B1523F01200190963 /* NSString+SHA1.h */ = {isa = PBXFileReference; fileEncoding = 4; name = "NSString+SHA1.h"; path = "Utilities/NSString+SHA1.h"; sourceTree = "<group>"; };
+		D92B718C1523F01200190963 /* NSString+SHA1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+SHA1.m"; path = "Utilities/NSString+SHA1.m"; sourceTree = "<group>"; };
 		D92E4FBF1477785C00472249 /* CreateTourViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTourViewController.h; sourceTree = "<group>"; };
 		D92E4FC01477785D00472249 /* CreateTourViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTourViewController.m; sourceTree = "<group>"; };
 		D92E4FC11477785D00472249 /* CreateTourViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTourViewController.xib; sourceTree = "<group>"; };
@@ -386,6 +389,8 @@
 				B91BF4B8146B2FE800D3D141 /* ServerRequest.m */,
 				D9A883A01500256F00CEAD0C /* NSData+Base64.h */,
 				D9A883A11500256F00CEAD0C /* NSData+Base64.m */,
+				D92B718B1523F01200190963 /* NSString+SHA1.h */,
+				D92B718C1523F01200190963 /* NSString+SHA1.m */,
 			);
 			name = Server;
 			sourceTree = "<group>";
@@ -543,6 +548,7 @@
 				D91C62AC148BEAA200DB6B39 /* Stop.m in Sources */,
 				D91C62AF148BEAB600DB6B39 /* Tour.m in Sources */,
 				D9A883A21500256F00CEAD0C /* NSData+Base64.m in Sources */,
+				D92B718D1523F01200190963 /* NSString+SHA1.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,7 @@
 
 #import <CommonCrypto/CommonDigest.h>       //needed for sha1
 #import "NSData+Base64.h"                   //needed for Base64
+#import "NSString+SHA1.h"
 
 
 
@@ -31,5 +32,9 @@
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response;
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection;
 - (NSString *) formatDateString;
+
+
+
+-(void) test;
 
 @end
