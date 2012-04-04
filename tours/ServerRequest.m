@@ -20,45 +20,32 @@
         urlString = @"http://tourtoise.cems.uvm.edu/api/tour/1";
         url = [NSURL URLWithString:urlString];
         request = [[NSMutableURLRequest alloc] initWithURL:url];
-        
-        //Need to add Date and Authorization headers to request
-        
+
+
 // Date Header        
         NSString *date = [self formatDateString];
         [request addValue:date forHTTPHeaderField:@"Date"];
-
-
 
 
 //Authorization Header
         //private string is PrivateKey + \n + date
         NSString *privateString = [NSString stringWithFormat:@"%@\n%@",PRIVATE_KEY,date];
         NSLog(@"Before SHA1 %@",privateString);
-        
-//        unsigned char digest[CC_SHA1_DIGEST_LENGTH];
-//        NSData *stringBytes = [privateString dataUsingEncoding: NSUTF8StringEncoding];
 
-//        if(CC_SHA1([stringBytes bytes], [stringBytes length], digest)){     //if sha1 does work, hash stored in digest array
-//
-//            NSData *hashdata = [NSData dataWithBytes:digest length:CC_SHA1_DIGEST_LENGTH];
-//            NSLog(@"After SHA1 %@",[hashdata description]);
-//
-//            NSString *encodedPrivateString = [hashdata base64EncodedString];
-//
-//            //                  PublicKey:PrivateString:UserID:Password
-//            NSString *authString = [NSString stringWithFormat:@"%@:%@:%@:%@",PUBLIC_KEY,encodedPrivateString,USER_ID,PASSWORD];
-//            [request addValue:authString forHTTPHeaderField:@"Authorization"];
-//        }
-        
-        NSString *sha1String = [privateString sha1];
-        NSData *hashData = [sha1String dataUsingEncoding:NSUTF8StringEncoding];
-        NSString *encodedPrivateString = [hashData base64EncodedString];
-        
+        //The sha1 occurs
+        NSString *sha1String = [privateString sha1];                                // get sha1 string
+        NSData *hashData = [sha1String dataUsingEncoding:NSUTF8StringEncoding];     // convert that to data
+
+        //Base64 encoding occurs
+        NSString *encodedPrivateString = [hashData base64EncodedString];            // do base64 encoding
+
+        //combine authorization string
         NSString *authString = [NSString stringWithFormat:@"%@:%@:%@:%@",PUBLIC_KEY,encodedPrivateString,USER_ID,PASSWORD];
-        [request addValue:authString forHTTPHeaderField:@"Authorization"];
-        
-        
-//        [self test];
+        [request addValue:authString forHTTPHeaderField:@"Authorization"];              //add authorization header
+
+
+
+// NOTES FROM API
 //        Authorization
 //        
 //        The Authorization header is a custom header used to authenticate the client and the user requesting access to the API. The authorization header must be formatted as follows:
@@ -67,28 +54,31 @@
 //        where PublicKey is the public key of the client, UserID is the base64 encoded user ID of the user requesting access (usually their email address) and Password is the user's base64 encoded password. PrivateString must be formatted as follows:
 //        
 //        base64_encode(sha1(PrivateKey + "\n" + Date))
-        
-        
-        
-        
-        
-        
+
+
 
         connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-        
+
     }
-    
+
     return self;
 }
 
+
+
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
+//  Called every time you have received data  
+    
     NSLog(@"received data");
-    NSLog(@"Data    ::      %@", data);
+//    NSLog(@"Data    ::      %@", data);
     
     NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];  
     NSLog(@"String  ::  %@", string);
     
+    
+    
+    [string release];       //memory management
 }
 
 
@@ -96,14 +86,16 @@
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    
+    NSLog(@"Did Fail with error");
+    NSLog(@"Did Fail with error");
+    NSLog(@"Did Fail with error");
     
     
 }
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
-    
-    
+//    Flow comes here first
+    NSLog(@"Did receive response");
     
 }
 
@@ -112,7 +104,7 @@
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-  
+    NSLog(@"Connection did finish loading");
     
     
 }
