@@ -11,13 +11,13 @@
 
 @interface TourListViewCell : UITableViewCell {
     
-    UIView          *__contentView;      //case View of th cell. This will determine size and shape (I think)   
-    UIView          *__backgroundView;   //backgroundView is simply the backroundView of the cell
-    UIView          *__accesoryView;     //view that is used, typically for control at the right hand side of the cell
+    UIView          *   __contentView;      //case View of th cell. This will determine size and shape (I think)   
+    UIView          *   __backgroundView;   //backgroundView is simply the backroundView of the cell
+    UIView          *   __accesoryView;     //view that is used, typically for control at the right hand side of the cell
     
-    UILabel         *__primaryLabel;
-    UILabel         *__secondaryLabel;
-    UIImageView     *__preview;
+    UILabel         *   __primaryLabel;
+    UILabel         *   __secondaryLabel;
+    UIImageView     *   __preview;
     
     
 

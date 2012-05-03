@@ -10,8 +10,8 @@
 
 @interface CategoryTableViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
 {
-    NSArray         *categories;
-    UITextField     *outputTextField;
+    NSArray                 *   categories;
+    UITextField             *   outputTextField;
     NSMutableArray          *   selectedCategories;
     NSString                *   categoryString;
 }

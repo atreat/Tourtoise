@@ -10,8 +10,6 @@
 
 @implementation ServerRequest
 
-
-
 - (id)init
 {
     self = [super init];
